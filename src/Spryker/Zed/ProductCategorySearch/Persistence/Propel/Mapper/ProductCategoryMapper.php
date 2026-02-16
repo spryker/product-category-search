@@ -14,9 +14,9 @@ class ProductCategoryMapper
 {
     /**
      * @param \Propel\Runtime\Collection\Collection<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory> $productCategoryEntities
-     * @param array<array<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>> $mappedProductCategoryEntities
+     * @param array<int, array<string, list<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>> $mappedProductCategoryEntities
      *
-     * @return array<array<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>
+     * @return array<int, array<string, list<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>>
      */
     public function mapProductCategoryEntitiesByIdProductAbstractAndStore(
         Collection $productCategoryEntities,
@@ -34,9 +34,9 @@ class ProductCategoryMapper
 
     /**
      * @param \Orm\Zed\ProductCategory\Persistence\SpyProductCategory $productCategoryEntity
-     * @param array<array<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>> $productCategoryEntities
+     * @param array<int, array<string, list<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>> $productCategoryEntities
      *
-     * @return array<array<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>
+     * @return array<int, array<string, list<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>>
      */
     protected function mapProductCategoryEntityByIdProductAbstractAndStore(
         SpyProductCategory $productCategoryEntity,

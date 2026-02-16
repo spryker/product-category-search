@@ -15,7 +15,7 @@ interface ProductCategorySearchRepositoryInterface
     /**
      * @param array<int> $productAbstractIds
      *
-     * @return array<array<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>
+     * @return array<int, array<string, list<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>>
      */
     public function getMappedProductCategoriesByIdProductAbstractAndStore(array $productAbstractIds): array;
 
