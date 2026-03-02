@@ -122,9 +122,6 @@ class ProductCategorySearchRepository extends AbstractRepository implements Prod
             ->getData();
     }
 
-    /**
-     * @return array
-     */
     public function getAllCategoriesWithAttributesAndOrderByDescendant(): array
     {
         $categoryNodeQuery = $this->getFactory()

@@ -80,9 +80,6 @@ class ProductCategorySearchFacadeTest extends Unit
      */
     protected $storeTransfer;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -104,9 +101,6 @@ class ProductCategorySearchFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     protected function _after(): void
     {
         parent::_after();
@@ -114,9 +108,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $this->cleanStaticProperty();
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductPageWithCategories(): void
     {
         //Arrange
@@ -131,9 +122,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $this->assertNotEmpty($productPageLoadTransfer->getPayloadTransfers()[0]->getCategories());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductPageWithCategoriesForFakeAbstractProduct(): void
     {
         //Arrange
@@ -148,9 +136,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $this->assertEmpty($productPageLoadTransfer->getPayloadTransfers()[0]->getCategories());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductPageMapWithCategoryData(): void
     {
         //Arrange
@@ -172,9 +157,6 @@ class ProductCategorySearchFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductPageDataWithCategoryData(): void
     {
         //Arrange
@@ -222,9 +204,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $this->assertNotEmpty($productPageSearchTransfer->getSortedCategories(), 'Property `sortedCategories` should be expanded.');
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductPageDataWithCategoryDataWithoutStore(): void
     {
         //Arrange
@@ -254,9 +233,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $this->assertEmpty($productPageSearchTransfer->getSortedCategories(), 'Property `sortedCategories` should be empty.');
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductPageDataWithOneOfCategoriesWithoutStoreWillFilterOutIncorrectCategoryNodeId(): void
     {
         //Arrange
@@ -303,9 +279,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $this->assertNotEmpty($productPageSearchTransfer->getSortedCategories(), 'Property `sortedCategories` should be expanded.');
     }
 
-    /**
-     * @return void
-     */
     protected function cleanStaticProperty(): void
     {
         $reflectedClass = new ReflectionClass(ProductCategoryTreeBuilder::class);

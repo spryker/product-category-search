@@ -23,9 +23,6 @@ use Spryker\Zed\ProductCategorySearch\Business\Expander\ProductPageMapCategoryEx
  */
 class ProductCategorySearchBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\ProductCategorySearch\Business\Expander\ProductPageCategoryExpanderInterface
-     */
     public function createProductPageCategoryExpander(): ProductPageCategoryExpanderInterface
     {
         return new ProductPageCategoryExpander(
@@ -33,9 +30,6 @@ class ProductCategorySearchBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductCategorySearch\Business\Expander\ProductPageDataExpanderInterface
-     */
     public function createProductPageDataExpander(): ProductPageDataExpanderInterface
     {
         return new ProductPageDataExpander(
@@ -43,17 +37,11 @@ class ProductCategorySearchBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductCategorySearch\Business\Expander\ProductPageMapCategoryExpanderInterface
-     */
     public function createProductPageMapCategoryExpander(): ProductPageMapCategoryExpanderInterface
     {
         return new ProductPageMapCategoryExpander();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductCategorySearch\Business\Builder\ProductCategoryTreeBuilderInterface
-     */
     public function createProductCategoryTreeBuilder(): ProductCategoryTreeBuilderInterface
     {
         return new ProductCategoryTreeBuilder(

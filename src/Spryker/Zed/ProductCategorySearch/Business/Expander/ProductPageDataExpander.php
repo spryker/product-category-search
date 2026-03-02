@@ -51,9 +51,6 @@ class ProductPageDataExpander implements ProductPageDataExpanderInterface
      */
     protected $productCategoryTreeBuilder;
 
-    /**
-     * @param \Spryker\Zed\ProductCategorySearch\Business\Builder\ProductCategoryTreeBuilderInterface $productCategoryTreeBuilder
-     */
     public function __construct(ProductCategoryTreeBuilderInterface $productCategoryTreeBuilder)
     {
         $this->productCategoryTreeBuilder = $productCategoryTreeBuilder;

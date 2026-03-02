@@ -33,9 +33,6 @@ class ProductCategorySearchBusinessTester extends Actor
 {
     use _generated\ProductCategorySearchBusinessTesterActions;
 
-    /**
-     * @return array
-     */
     public function getProductData(): array
     {
         return [
@@ -61,9 +58,6 @@ class ProductCategorySearchBusinessTester extends Actor
         ];
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\PageMapTransfer
-     */
     public function getExpectedPageMapTransfer(): PageMapTransfer
     {
         $productData = $this->getProductData();
@@ -102,14 +96,6 @@ class ProductCategorySearchBusinessTester extends Actor
             ->getMappedProductCategoriesByIdProductAbstractAndStore($productAbstractIds);
     }
 
-    /**
-     * @param array $categorySeedData
-     * @param array $categoryLocalizedAttributeSeedData
-     * @param array $productCategorySeedData
-     * @param int $idStore
-     *
-     * @return \Generated\Shared\Transfer\NodeTransfer
-     */
     public function haveCategoryNodeWithDifferentIdCategory(
         array $categorySeedData,
         array $categoryLocalizedAttributeSeedData,

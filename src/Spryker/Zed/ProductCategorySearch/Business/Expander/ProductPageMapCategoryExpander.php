@@ -267,11 +267,6 @@ class ProductPageMapCategoryExpander implements ProductPageMapCategoryExpanderIn
         }
     }
 
-    /**
-     * @param int $idCategoryNode
-     *
-     * @return string
-     */
     protected static function buildSortFieldName(int $idCategoryNode): string
     {
         return sprintf(

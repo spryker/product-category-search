@@ -27,9 +27,6 @@ interface ProductCategorySearchRepositoryInterface
      */
     public function getCategoryNodeIdsByLocaleAndStore(LocaleTransfer $localeTransfer, StoreTransfer $storeTransfer): array;
 
-    /**
-     * @return array
-     */
     public function getAllCategoriesWithAttributesAndOrderByDescendant(): array;
 
     /**

@@ -48,9 +48,6 @@ class ProductCategoryTreeBuilder implements ProductCategoryTreeBuilderInterface
      */
     protected $productCategorySearchRepository;
 
-    /**
-     * @param \Spryker\Zed\ProductCategorySearch\Persistence\ProductCategorySearchRepositoryInterface $productCategorySearchRepository
-     */
     public function __construct(ProductCategorySearchRepositoryInterface $productCategorySearchRepository)
     {
         $this->productCategorySearchRepository = $productCategorySearchRepository;
@@ -140,11 +137,6 @@ class ProductCategoryTreeBuilder implements ProductCategoryTreeBuilderInterface
         return $categoryTree;
     }
 
-    /**
-     * @param array $categoryNodes
-     *
-     * @return array
-     */
     protected function formatCategoriesByNodeIdsForLocaleAndStore(array $categoryNodes): array
     {
         $categories = [];

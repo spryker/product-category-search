@@ -17,19 +17,11 @@ class ProductPageCategoryExpander implements ProductPageCategoryExpanderInterfac
      */
     protected $productCategorySearchRepository;
 
-    /**
-     * @param \Spryker\Zed\ProductCategorySearch\Persistence\ProductCategorySearchRepositoryInterface $productCategorySearchRepository
-     */
     public function __construct(ProductCategorySearchRepositoryInterface $productCategorySearchRepository)
     {
         $this->productCategorySearchRepository = $productCategorySearchRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductPageLoadTransfer $productPageLoadTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductPageLoadTransfer
-     */
     public function expandProductPageWithCategories(ProductPageLoadTransfer $productPageLoadTransfer): ProductPageLoadTransfer
     {
         $payloadTransfers = $this->setProductCategories(

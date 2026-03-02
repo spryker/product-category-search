@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\ProductPageLoadTransfer;
 
 interface ProductPageCategoryExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductPageLoadTransfer $productPageLoadTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductPageLoadTransfer
-     */
     public function expandProductPageWithCategories(ProductPageLoadTransfer $productPageLoadTransfer): ProductPageLoadTransfer;
 }
