@@ -41,7 +41,12 @@ class ProductCategoryTreeBuilder implements ProductCategoryTreeBuilderInterface
     /**
      * @var array<array<array<array<int>>>>
      */
-    protected static $categoryTreeIds = [];
+    protected static array $categoryTreeIds = [];
+
+    /**
+     * @var array<int|string, array<int, string|null>>
+     */
+    protected static array $categoryNamesByLocaleAndNodeId = [];
 
     /**
      * @var \Spryker\Zed\ProductCategorySearch\Persistence\ProductCategorySearchRepositoryInterface
@@ -96,17 +101,33 @@ class ProductCategoryTreeBuilder implements ProductCategoryTreeBuilderInterface
      */
     public function buildProductCategoryTreeNames(array $categoryNodeIds, LocaleTransfer $localeTransfer): array
     {
-        $categoryNames = [];
-        $categoryAttributes = $this->productCategorySearchRepository
-            ->getCategoryAttributesByLocale($categoryNodeIds, $localeTransfer);
+        $idLocale = $localeTransfer->getIdLocale();
 
-        $categoryNames[$localeTransfer->getIdLocale()] = [];
+        $uncachedNodeIds = array_filter(
+            $categoryNodeIds,
+            fn (int $idCategoryNode) => !array_key_exists($idCategoryNode, static::$categoryNamesByLocaleAndNodeId[$idLocale] ?? []),
+        );
 
-        foreach ($categoryAttributes as $categoryAttribute) {
-            $idCategoryNode = (int)$categoryAttribute[static::COLUMN_ID_CATEGORY_NODE];
-            $categoryName = $categoryAttribute[static::COLUMN_CATEGORY_NAME];
+        if ($uncachedNodeIds !== []) {
+            $categoryAttributes = $this->productCategorySearchRepository
+                ->getCategoryAttributesByLocale($uncachedNodeIds, $localeTransfer);
 
-            $categoryNames[$localeTransfer->getIdLocale()][$idCategoryNode] = $categoryName;
+            foreach ($uncachedNodeIds as $idCategoryNode) {
+                static::$categoryNamesByLocaleAndNodeId[$idLocale][$idCategoryNode] = null;
+            }
+
+            foreach ($categoryAttributes as $categoryAttribute) {
+                static::$categoryNamesByLocaleAndNodeId[$idLocale][(int)$categoryAttribute[static::COLUMN_ID_CATEGORY_NODE]] = $categoryAttribute[static::COLUMN_CATEGORY_NAME];
+            }
+        }
+
+        $categoryNames = [$idLocale => []];
+        foreach ($categoryNodeIds as $idCategoryNode) {
+            if (!isset(static::$categoryNamesByLocaleAndNodeId[$idLocale][$idCategoryNode])) {
+                continue;
+            }
+
+            $categoryNames[$idLocale][$idCategoryNode] = static::$categoryNamesByLocaleAndNodeId[$idLocale][$idCategoryNode];
         }
 
         return $categoryNames;

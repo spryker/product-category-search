@@ -84,9 +84,9 @@ class ProductCategorySearchRepository extends AbstractRepository implements Prod
 
         $productCategoryQuery
             ->useSpyCategoryQuery(null, Criteria::LEFT_JOIN)
-                ->useSpyCategoryStoreQuery(null, Criteria::LEFT_JOIN)
-                    ->leftJoinSpyStore()
-                ->endUse()
+               ->useSpyCategoryStoreQuery(null, Criteria::LEFT_JOIN)
+                  ->leftJoinSpyStore()
+               ->endUse()
             ->endUse();
 
         return $this->getFactory()

@@ -7,11 +7,17 @@
 
 namespace Spryker\Zed\ProductCategorySearch\Persistence\Propel\Mapper;
 
+use Orm\Zed\Category\Persistence\SpyCategoryStore;
 use Orm\Zed\ProductCategory\Persistence\SpyProductCategory;
 use Propel\Runtime\Collection\Collection;
 
 class ProductCategoryMapper
 {
+    /**
+     * @var array<int, string|null>
+     */
+    protected static array $storeCache = [];
+
     /**
      * @param \Propel\Runtime\Collection\Collection<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory> $productCategoryEntities
      * @param array<int, array<string, list<\Orm\Zed\ProductCategory\Persistence\SpyProductCategory>>> $mappedProductCategoryEntities
@@ -44,11 +50,20 @@ class ProductCategoryMapper
     ): array {
         foreach ($productCategoryEntity->getSpyCategory()->getSpyCategoryStores() as $categoryStoreEntity) {
             $idProductAbstract = $productCategoryEntity->getFkProductAbstract();
-            $storeName = $categoryStoreEntity->getSpyStore()->getName();
+            $storeName = $this->getStoreName($categoryStoreEntity);
 
             $productCategoryEntities[$idProductAbstract][$storeName][] = $productCategoryEntity;
         }
 
         return $productCategoryEntities;
+    }
+
+    protected function getStoreName(SpyCategoryStore $spyCategoryStore): string
+    {
+        if (!isset(static::$storeCache[$spyCategoryStore->getFkStore()])) {
+            static::$storeCache[$spyCategoryStore->getFkStore()] = (string)$spyCategoryStore->getSpyStore()->getName();
+        }
+
+        return static::$storeCache[$spyCategoryStore->getFkStore()];
     }
 }
