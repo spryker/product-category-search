@@ -304,6 +304,6 @@ class ProductPageDataExpander implements ProductPageDataExpanderInterface
             $localeTransfer,
             $storeTransfer,
             true,
-        )[$idCategoryNode];
+        )[$idCategoryNode] ?? [];
     }
 }
