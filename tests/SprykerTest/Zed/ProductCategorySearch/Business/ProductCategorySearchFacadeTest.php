@@ -284,7 +284,6 @@ class ProductCategorySearchFacadeTest extends Unit
         $reflectedClass = new ReflectionClass(ProductCategoryTreeBuilder::class);
 
         $propertyCategoryTree = $reflectedClass->getProperty('categoryTreeIds');
-        $propertyCategoryTree->setAccessible(true);
         $propertyCategoryTree->setValue([]);
     }
 }
